@@ -1,3 +1,4 @@
-mod arrays_hashing;
-
-fn main() {}
+mod neetcode;
+fn main() {
+    println!("Hello, world!");
+}

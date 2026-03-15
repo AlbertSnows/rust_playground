@@ -1,7 +1,9 @@
-use std::collections::HashMap;
-
-pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    todo!()
+impl Solution {
+    pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+        // nums = [1, 1, 2, 3]
+        // nums = [3, 4, 5]
+        // hashset = {1, 2, 3}
+    }
 }
 
 #[cfg(test)]
