@@ -1,0 +1,15 @@
+[
+  {
+    "label": "Debug Tests",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/target/debug/deps/rust_playground_test",
+    "args": ["--test-threads", "1"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "build": {
+      "command": "sh",
+      "args": ["$ZED_WORKTREE_ROOT/.zed/build-test.sh", "$ZED_WORKTREE_ROOT"],
+      "cwd": "$ZED_WORKTREE_ROOT",
+    },
+  },
+]
