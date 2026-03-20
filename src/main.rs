@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 mod common;
 mod neetcode;
 use log::info;
