@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 pub fn add_if_not_exists(hashset: &mut std::collections::HashSet<i32>, num: i32) -> bool {
     if hashset.contains(&num) {
         return true;
