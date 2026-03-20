@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use std::hash::Hash;
 
-trait AddIfNotExists<T> {
+pub trait AddIfNotExists<T> {
     fn add_if_not_exists(&mut self, num: T) -> bool;
 }
 
@@ -11,11 +11,11 @@ impl<T: Eq + Hash> AddIfNotExists<T> for HashSet<T> {
     // Hash = can be hashed
     // so T: Eq + Hash = supports Eq and Hash
     fn add_if_not_exists(&mut self, val: T) -> bool {
-        if self.contains(&val) {
-            return true;
+        let is_unique = !self.contains(&val);
+        if is_unique {
+            self.insert(val);
         }
-        self.insert(val);
-        false
+        is_unique
     }
 }
 
