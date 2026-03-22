@@ -1,5 +1,9 @@
+use crate::common::collections::collections::some;
+use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
-
+// Given an array of integers nums and an integer target,
+// return indices of the two numbers such that they add up to target.
+//
 // Input: nums = [3,2,4], target = 6
 // Output: [1,2]
 
@@ -54,48 +58,80 @@ use std::collections::{HashMap, HashSet};
 // let right_index = num_to_original_index[&sorted_nums[right]];
 // return vec![left_index as i32, right_index as i32];
 
-pub fn add_to_multimap(
-    mut map: HashMap<i32, HashSet<usize>>,
-    (index, num): (i32, usize),
-) -> HashMap<i32, HashSet<usize>> {
-    map.entry(index).or_insert_with(HashSet::new).insert(num);
-    map
+// struct TwoSumInfo {
+//     indexes: HashSet<usize>,
+//     remainder: i32,
+//     partner: HashSet<i32>,
+// }
+
+// impl TwoSumInfo {
+//     fn new(index: usize, remainder: i32) -> Self {
+//         Self {
+//             indexes: HashSet::from([index]),
+//             remainder,
+//             partner: HashSet::new(),
+//         }
+//     }
+
+//     fn add_info(&mut self, index: usize, num: i32) {
+//         self.indexes.insert(index);
+//         self.remainder -= num;
+//         self.partner.insert(num);
+//     }
+// }
+
+// (defn define_two_sum_info [index, remainder]
+//     {
+//         indexes: {index},
+//     remainder: remainder,
+//     partner: nil
+//     })
+
+// let two_sum_info = define_two_sum_info(1, 3);
+// {
+//     indexes: {1},
+//     remainder: 3,
+//     partner: nil,
+// }
+
+// (upsert :partner {4} two_sum_info)
+
+pub fn map_value_to_indexes(nums: Vec<i32>) -> HashMap<i32, Vec<usize>> {
+    nums.iter()
+        .enumerate() // [(0, 4), (1, 3), ...]
+        .map(|(idx, &num)| (num, idx))
+        .into_group_map()
 }
 
 pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    // [3, 3, 2, 4]
+    // one or more solutions, return all?
+    // [4, 3, 5, 3, 4, 1, 3]
     // target = 6
     // [
-    // 3:[0, 1],
-    // 4:[2],
-    // 2:[3]
+    // 4: {index: {0, 4}, remainder: 2, partner: null},
+    // 3: {index: {1, 3, 6}, remainder: 3, partner: {1,3,6}},
+    // 5: {index: {2}, remainder: 1, partner: 1}
+    // 1: {index: {5}, remainder: 5, partner: 5}
     // ]
-    let needed_to_indexes = nums
-        .iter()
-        .enumerate()
-        .map(|(index, num)| (target - num, index))
-        .fold(HashMap::new(), add_to_multimap);
+    // 6 - # = key
 
-    for (index, num) in nums.iter().enumerate() {
-        let needed = target - num;
-        let indexes = needed_to_indexes.get(&needed);
-        let other_index =
-            indexes.is_some() && indexes.unwrap().iter().find(|&&idx| idx != index).is_some();
-        // todo: finish
-        if other_index {
-            return vec![
-                index as i32,
-                indexes.unwrap().iter().find(|&&idx| idx != index).unwrap() as i32,
-            ];
-        }
-    }
+    // 4, 3, 5, 1
+    let num_to_indexes = map_value_to_indexes(nums);
+    let has_complement = |&num| num_to_indexes.contains_key(&(target - num));
+    // let valid_num = some(has_complement, num_to_indexes.keys());
+    // let get_valid_pair = |&num| {
+    //     let complement = target - num;
+    //     let is_self_compliment = num == complement;
+    //     let indexes = num_to_indexes.get(&num).unwrap();
+    //     let complement_indexes = num_to_indexes.get(&complement).unwrap();
+    //     let valid_pair =
+    //         if is_self_compliment then vec![indexes[0], indexes[1]]
+    //         else vec![indexes[0], complement_indexes[0]];
+    //     valid_pair
+    // };
 
-    // for index, num in nums
-    // 0, 3 | 1, 3 |
-    // needed = 6 - 3 = 3
-    // indexes = needed_to_indexes.get(needed)
-    // and !x.contains(index)
-    return vec![];
+    let valid_pair = get_valid_pair(valid_num.unwrap());
+    valid_pair
 }
 
 #[cfg(test)]
