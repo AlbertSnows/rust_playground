@@ -1,4 +1,4 @@
-use crate::common::collections::collections::some;
+// use crate::common::collections::collections::some;
 use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
 #[allow(dead_code)]
@@ -119,9 +119,11 @@ pub fn map_value_to_indexes(nums: Vec<i32>) -> HashMap<i32, Vec<usize>> {
 
 pub fn two_sum(nums: Vec<i32>, target: i32) -> HashSet<usize> {
     let num_to_indexes = map_value_to_indexes(nums);
-    let has_complement = |num: &&i32| num_to_indexes.contains_key(&(target - **num));
-    let valid_num = some(has_complement, num_to_indexes.keys());
-    let get_valid_pair = |&num| -> Vec<usize> {
+    let has_complement = |&num: &i32| num_to_indexes.contains_key(&(target - num));
+    // num_to_indexes.keys() = Iterator<Item = &i32>
+    // some returns Option<&i32>
+    let valid_num = (num_to_indexes.keys().copied()).find(has_complement); //some(has_complement, num_to_indexes.keys()); // .copied());
+    let get_valid_pair = |num| -> Vec<usize> {
         let complement = target - num;
         let is_self_compliment = num == complement;
         let indexes = num_to_indexes.get(&num).unwrap();
