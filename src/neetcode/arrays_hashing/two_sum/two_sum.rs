@@ -1,6 +1,8 @@
 use crate::common::collections::collections::some;
 use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
+#[allow(dead_code)]
+
 // Given an array of integers nums and an integer target,
 // return indices of the two numbers such that they add up to target.
 //
@@ -95,6 +97,18 @@ use std::collections::{HashMap, HashSet};
 // }
 
 // (upsert :partner {4} two_sum_info)
+// one or more solutions, return all?
+// [4, 3, 5, 3, 4, 1, 3]
+// target = 6
+// [
+// 4: {index: {0, 4}, remainder: 2, partner: null},
+// 3: {index: {1, 3, 6}, remainder: 3, partner: {1,3,6}},
+// 5: {index: {2}, remainder: 1, partner: 1}
+// 1: {index: {5}, remainder: 5, partner: 5}
+// ]
+// 6 - # = key
+
+// 4, 3, 5, 1
 
 pub fn map_value_to_indexes(nums: Vec<i32>) -> HashMap<i32, Vec<usize>> {
     nums.iter()
@@ -103,35 +117,25 @@ pub fn map_value_to_indexes(nums: Vec<i32>) -> HashMap<i32, Vec<usize>> {
         .into_group_map()
 }
 
-pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    // one or more solutions, return all?
-    // [4, 3, 5, 3, 4, 1, 3]
-    // target = 6
-    // [
-    // 4: {index: {0, 4}, remainder: 2, partner: null},
-    // 3: {index: {1, 3, 6}, remainder: 3, partner: {1,3,6}},
-    // 5: {index: {2}, remainder: 1, partner: 1}
-    // 1: {index: {5}, remainder: 5, partner: 5}
-    // ]
-    // 6 - # = key
-
-    // 4, 3, 5, 1
+pub fn two_sum(nums: Vec<i32>, target: i32) -> HashSet<usize> {
     let num_to_indexes = map_value_to_indexes(nums);
-    let has_complement = |&num| num_to_indexes.contains_key(&(target - num));
-    // let valid_num = some(has_complement, num_to_indexes.keys());
-    // let get_valid_pair = |&num| {
-    //     let complement = target - num;
-    //     let is_self_compliment = num == complement;
-    //     let indexes = num_to_indexes.get(&num).unwrap();
-    //     let complement_indexes = num_to_indexes.get(&complement).unwrap();
-    //     let valid_pair =
-    //         if is_self_compliment then vec![indexes[0], indexes[1]]
-    //         else vec![indexes[0], complement_indexes[0]];
-    //     valid_pair
-    // };
+    let has_complement = |num: &&i32| num_to_indexes.contains_key(&(target - **num));
+    let valid_num = some(has_complement, num_to_indexes.keys());
+    let get_valid_pair = |&num| -> Vec<usize> {
+        let complement = target - num;
+        let is_self_compliment = num == complement;
+        let indexes = num_to_indexes.get(&num).unwrap();
+        let complement_indexes = num_to_indexes.get(&complement).unwrap();
+        let valid_pair = if is_self_compliment {
+            vec![indexes[0], indexes[1]]
+        } else {
+            vec![indexes[0], complement_indexes[0]]
+        };
+        valid_pair
+    };
 
     let valid_pair = get_valid_pair(valid_num.unwrap());
-    valid_pair
+    valid_pair.into_iter().collect::<HashSet<usize>>()
 }
 
 #[cfg(test)]
@@ -140,11 +144,11 @@ mod tests {
 
     #[test]
     fn basic() {
-        assert_eq!(two_sum(vec![2, 7, 11, 15], 9), vec![0, 1]);
+        assert_eq!(two_sum(vec![2, 7, 11, 15], 9), HashSet::from([0, 1]));
     }
 
     #[test]
     fn duplicate_values() {
-        assert_eq!(two_sum(vec![3, 3], 6), vec![0, 1]);
+        assert_eq!(two_sum(vec![3, 3], 6), HashSet::from([1, 0]));
     }
 }
