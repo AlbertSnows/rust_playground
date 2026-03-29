@@ -1,4 +1,6 @@
-#[allow(dead_code)]
+#![allow(dead_code)]
+#![allow(clippy::let_and_return)]
+#![allow(unused_imports)]
 mod common;
 mod neetcode;
 use log::info;
