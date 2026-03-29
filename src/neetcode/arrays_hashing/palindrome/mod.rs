@@ -1,13 +1,12 @@
-pub fn is_palindrome(s: String) -> bool {
+pub fn is_palindrome(s: &str) -> bool {
     if s.is_empty() {
         return true;
     }
     //[(0, s.len() - 1), (1, s.len() - 2), ..., (s.len() / 2, s.len() / 2)]
     let s_as_chars = s.chars();
-    let list_of_alleged_matches: Vec<(char, char)> = s_as_chars
-        .clone()
-        .zip(s.clone().chars().rev())
-        .collect::<Vec<_>>();
+    let s_as_chars_rev = s.chars().rev();
+    let list_of_alleged_matches: Vec<(char, char)> =
+        s_as_chars.clone().zip(s_as_chars_rev).collect::<Vec<_>>();
     let mut indexes = 0..s_as_chars.count() - 1;
     let letters_match = |i: usize| list_of_alleged_matches[i].0 == list_of_alleged_matches[i].1;
     let all_letters_match = indexes.all(letters_match);

@@ -13,7 +13,7 @@ use crate::common::collections::traits::AddIfNotExists;
 // let has_dup = some(is_dup, &nums).is_some();
 // has_dup
 
-pub fn contains_duplicate(nums: Vec<i32>) -> bool {
+pub fn contains_duplicate(nums: &[i32]) -> bool {
     let mut unique_nums = std::collections::HashSet::new();
     let not_unique = |num: &i32| !unique_nums.add_if_not_exists(*num);
     let has_dup = nums.iter().any(not_unique);

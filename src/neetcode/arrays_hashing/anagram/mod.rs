@@ -29,7 +29,7 @@ use crate::common::maps::freq_map;
 // but it is known at runtime.
 // Slice<char>
 
-pub fn is_anagram(s: String, t: String) -> bool {
+pub fn is_anagram(s: &str, t: &str) -> bool {
     // aabaa
     // racecar
     let are_unequal = s.len() != t.len();
