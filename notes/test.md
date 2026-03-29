@@ -1,3 +1,6 @@
+to test: 
+cargo run <module>
+
 cfg = configuration
 
 #[cfg(test)] = only compile this module when running tests, not in release
