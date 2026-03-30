@@ -19,21 +19,21 @@ mod tests {
 
     #[test]
     fn basic_palindrome() {
-        assert!(is_palindrome("racecar".to_string()));
+        assert!(is_palindrome("racecar"));
     }
 
     #[test]
     fn not_palindrome() {
-        assert!(!is_palindrome("hello".to_string()));
+        assert!(!is_palindrome("hello"));
     }
 
     #[test]
     fn single_char() {
-        assert!(is_palindrome("a".to_string()));
+        assert!(is_palindrome("a"));
     }
 
     #[test]
     fn empty_string() {
-        assert!(is_palindrome("".to_string()));
+        assert!(is_palindrome(""));
     }
 }

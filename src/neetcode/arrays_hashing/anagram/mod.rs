@@ -52,26 +52,26 @@ mod tests {
 
     #[test]
     fn basic_anagram() {
-        assert!(is_anagram("anagram".to_string(), "nagaram".to_string()));
+        assert!(is_anagram("anagram", "nagaram"));
     }
 
     #[test]
     fn not_anagram() {
-        assert!(!is_anagram("rat".to_string(), "car".to_string()));
+        assert!(!is_anagram("rat", "car"));
     }
 
     #[test]
     fn different_lengths() {
-        assert!(!is_anagram("ab".to_string(), "a".to_string()));
+        assert!(!is_anagram("ab", "a"));
     }
 
     #[test]
     fn single_char() {
-        assert!(is_anagram("a".to_string(), "a".to_string()));
+        assert!(is_anagram("a", "a"));
     }
 
     #[test]
     fn duplicate_chars() {
-        assert!(is_anagram("aab".to_string(), "baa".to_string()));
+        assert!(is_anagram("aab", "baa"));
     }
 }

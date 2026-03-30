@@ -26,12 +26,18 @@ mod tests {
 
     #[test]
     fn basic() {
-        dbg!(contains_duplicate(vec![1, 2, 3]));
-        assert_eq!(contains_duplicate(vec![1, 2, 3]), false);
+        // &vec![1, 2, 3]
+        // vs
+        // vec![1, 2, 3]
+        // vec![123] passes in the value, &passes in a reference to the value. in both cases,
+        // the value is "temporary" in the sense that it only exists for the duration of the function
+        // that is calling it.
+        dbg!(contains_duplicate(&vec![1, 2, 3]));
+        assert_eq!(contains_duplicate(&vec![1, 2, 3]), false);
     }
 
     #[test]
     fn duplicate_values() {
-        assert_eq!(contains_duplicate(vec![3, 3]), true);
+        assert_eq!(contains_duplicate(&vec![3, 3]), true);
     }
 }

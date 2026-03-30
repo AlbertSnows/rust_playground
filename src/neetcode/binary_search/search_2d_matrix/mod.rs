@@ -1,0 +1,20 @@
+pub fn search_matrix(matrix: Vec<Vec<i32>>, target: i32) -> bool {
+    todo!()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn found() {
+        let matrix = vec![vec![1, 3, 5, 7], vec![10, 11, 16, 20], vec![23, 30, 34, 60]];
+        assert_eq!(search_matrix(matrix, 3), true);
+    }
+
+    #[test]
+    fn not_found() {
+        let matrix = vec![vec![1, 3, 5, 7], vec![10, 11, 16, 20], vec![23, 30, 34, 60]];
+        assert_eq!(search_matrix(matrix, 13), false);
+    }
+}
