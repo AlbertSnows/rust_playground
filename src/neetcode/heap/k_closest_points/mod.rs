@@ -8,7 +8,7 @@ mod tests {
 
     #[test]
     fn basic() {
-        let mut result = k_closest(vec![vec![1, 3], vec![-2, 2]], 1);
+        let result = k_closest(vec![vec![1, 3], vec![-2, 2]], 1);
         assert_eq!(result, vec![vec![-2, 2]]);
     }
 

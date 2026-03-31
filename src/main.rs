@@ -2,6 +2,7 @@
 #![allow(clippy::let_and_return)]
 #![allow(unused_imports)]
 #![warn(clippy::pedantic)]
+#![allow(unused_variables)]
 mod common;
 mod neetcode;
 use log::info;
