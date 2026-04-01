@@ -8,7 +8,10 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
     // Output: [["bat"],["nat","tan"]]
     // freq map -> hash the freq map?
     // [/n /a /t]
-    let char_2d_list: Vec<Vec<char>> = strs.iter().map(|s| s.chars().collect()).collect();
+    let char_2d_list: Vec<Vec<char>> = strs
+        .iter()
+        .map(|initial_word| initial_word.chars().collect())
+        .collect();
     // [{n: 1, a: 1, t: 1}]
     let freq_list: Vec<HashMap<&char, usize>> = char_2d_list
         .iter()
@@ -19,16 +22,17 @@ pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         .iter()
         .map(|freq: &HashMap<&char, usize>| hash_freq_map(freq))
         .collect();
-    //
-    let freq_hash_to_index: HashMap<String, HashSet<usize>> = freq_hashes.iter().enumerate().fold(
-        std::collections::HashMap::new(),
-        |mut map, (i, hash)| {
-            map.entry(hash.clone())
-                .or_insert_with(HashSet::new)
-                .add_if_not_exists(i);
-            map
-        },
-    );
+    let add_index_to_freq_hash = |mut map: HashMap<String, HashSet<usize>>,
+                                  (i, hash): (usize, &String)| {
+        map.entry(hash.clone())
+            .or_insert_with(HashSet::new)
+            .add_if_not_exists(i);
+        map
+    };
+    let freq_hash_to_index: HashMap<String, HashSet<usize>> = freq_hashes
+        .iter()
+        .enumerate()
+        .fold(std::collections::HashMap::new(), add_index_to_freq_hash);
     let result: Vec<Vec<String>> = freq_hash_to_index
         .values()
         .map(|indices| indices.iter().map(|&i| strs[i].clone()).collect())
