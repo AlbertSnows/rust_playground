@@ -34,11 +34,16 @@ pub fn top_k_frequent(nums: Vec<i32>, k: i32) -> Vec<i32> {
                 left_freq.cmp(right_freq)
             },
         )
-        .collect();
-    let most_freq_k = freq_vec
+        .collect(); // [(3, 1), ...]
+    let freq_from_most_to_least = freq_vec
+        .into_iter()
+        .map(|(num, _): (&i32, &usize)| *num)
+        .rev()
+        .collect::<Vec<i32>>();
+
+    let most_freq_k = freq_from_most_to_least
         .into_iter()
         .take(k as usize)
-        .map(|(num, _): (&i32, &usize)| *num)
         .collect::<Vec<i32>>();
     most_freq_k
 }
