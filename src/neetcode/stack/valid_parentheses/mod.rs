@@ -1,5 +1,5 @@
 pub fn is_valid(s: String) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

@@ -1,5 +1,5 @@
 pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

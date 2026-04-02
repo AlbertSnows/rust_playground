@@ -1,9 +1,9 @@
 pub fn encode(strs: Vec<String>) -> String {
-    todo!()
+    Default::default()
 }
 
 pub fn decode(s: String) -> Vec<String> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

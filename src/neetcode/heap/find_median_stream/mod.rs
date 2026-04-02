@@ -1,6 +1,7 @@
 use std::collections::BinaryHeap;
 use std::cmp::Reverse;
 
+#[derive(Default)]
 pub struct MedianFinder {
     lower: BinaryHeap<i32>,
     upper: BinaryHeap<Reverse<i32>>,
@@ -8,15 +9,15 @@ pub struct MedianFinder {
 
 impl MedianFinder {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn add_num(&mut self, num: i32) {
-        todo!()
+        Default::default()
     }
 
     pub fn find_median(&self) -> f64 {
-        todo!()
+        Default::default()
     }
 }
 

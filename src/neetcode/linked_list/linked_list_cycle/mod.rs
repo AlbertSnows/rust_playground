@@ -2,7 +2,7 @@ use crate::neetcode::linked_list::ListNode;
 
 pub fn has_cycle(_head: Option<Box<ListNode>>) -> bool {
     // Note: cycle detection with Box<ListNode> is contrived; real impl uses raw pointers.
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

@@ -1,20 +1,21 @@
 use std::collections::HashMap;
 
+#[derive(Default)]
 pub struct DetectSquares {
     points: HashMap<(i32, i32), i32>,
 }
 
 impl DetectSquares {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn add(&mut self, point: Vec<i32>) {
-        todo!()
+        Default::default()
     }
 
     pub fn count(&self, point: Vec<i32>) -> i32 {
-        todo!()
+        Default::default()
     }
 }
 

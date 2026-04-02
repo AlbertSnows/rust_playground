@@ -1,5 +1,5 @@
 pub fn find_itinerary(tickets: Vec<Vec<String>>) -> Vec<String> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

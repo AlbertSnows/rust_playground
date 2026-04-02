@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+#[derive(Default)]
 pub struct WordDictionary {
     children: HashMap<char, WordDictionary>,
     is_end: bool,
@@ -7,15 +8,15 @@ pub struct WordDictionary {
 
 impl WordDictionary {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn add_word(&mut self, word: String) {
-        todo!()
+        Default::default()
     }
 
     pub fn search(&self, word: String) -> bool {
-        todo!()
+        Default::default()
     }
 }
 

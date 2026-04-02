@@ -1,7 +1,7 @@
 use crate::neetcode::linked_list::{ListNode, to_list, to_vec};
 
 pub fn merge_two_lists(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

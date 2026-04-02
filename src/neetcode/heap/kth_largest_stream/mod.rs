@@ -1,6 +1,7 @@
 use std::collections::BinaryHeap;
 use std::cmp::Reverse;
 
+#[derive(Default)]
 pub struct KthLargest {
     k: usize,
     heap: BinaryHeap<Reverse<i32>>,
@@ -8,11 +9,11 @@ pub struct KthLargest {
 
 impl KthLargest {
     pub fn new(k: i32, nums: Vec<i32>) -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn add(&mut self, val: i32) -> i32 {
-        todo!()
+        Default::default()
     }
 }
 

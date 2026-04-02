@@ -1,5 +1,5 @@
 pub fn hamming_weight(n: u32) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

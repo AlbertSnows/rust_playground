@@ -1,7 +1,7 @@
 use crate::neetcode::linked_list::{ListNode, to_list, to_vec};
 
 pub fn reverse_k_group(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

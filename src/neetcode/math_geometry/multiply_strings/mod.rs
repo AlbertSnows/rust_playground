@@ -1,5 +1,5 @@
 pub fn multiply(num1: String, num2: String) -> String {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

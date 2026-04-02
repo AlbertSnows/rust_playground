@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

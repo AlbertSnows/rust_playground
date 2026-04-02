@@ -1,5 +1,5 @@
 pub fn partition_labels(s: String) -> Vec<i32> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

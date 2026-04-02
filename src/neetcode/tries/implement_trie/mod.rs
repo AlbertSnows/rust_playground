@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+#[derive(Default)]
 pub struct Trie {
     children: HashMap<char, Trie>,
     is_end: bool,
@@ -7,19 +8,19 @@ pub struct Trie {
 
 impl Trie {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn insert(&mut self, word: String) {
-        todo!()
+        Default::default()
     }
 
     pub fn search(&self, word: String) -> bool {
-        todo!()
+        Default::default()
     }
 
     pub fn starts_with(&self, prefix: String) -> bool {
-        todo!()
+        Default::default()
     }
 }
 

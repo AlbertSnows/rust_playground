@@ -1,5 +1,5 @@
 pub fn min_window(s: String, t: String) -> String {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

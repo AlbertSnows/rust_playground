@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn is_subtree(root: Option<Rc<RefCell<TreeNode>>>, sub_root: Option<Rc<RefCell<TreeNode>>>) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

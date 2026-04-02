@@ -1,5 +1,5 @@
 pub fn find_words(board: Vec<Vec<char>>, words: Vec<String>) -> Vec<String> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

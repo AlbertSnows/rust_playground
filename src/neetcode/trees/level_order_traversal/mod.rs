@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn level_order(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

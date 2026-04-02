@@ -3,7 +3,7 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

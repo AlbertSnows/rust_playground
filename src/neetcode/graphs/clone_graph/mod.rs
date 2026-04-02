@@ -15,7 +15,7 @@ impl Node {
 }
 
 pub fn clone_graph(node: Option<Rc<RefCell<Node>>>) -> Option<Rc<RefCell<Node>>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

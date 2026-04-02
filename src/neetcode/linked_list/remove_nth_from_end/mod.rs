@@ -1,7 +1,7 @@
 use crate::neetcode::linked_list::{ListNode, to_list, to_vec};
 
 pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

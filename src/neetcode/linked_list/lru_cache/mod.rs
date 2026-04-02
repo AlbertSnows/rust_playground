@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 
+#[derive(Default)]
 pub struct LRUCache {
     capacity: usize,
     map: HashMap<i32, i32>,
@@ -8,15 +9,15 @@ pub struct LRUCache {
 
 impl LRUCache {
     pub fn new(capacity: i32) -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn get(&mut self, key: i32) -> i32 {
-        todo!()
+        Default::default()
     }
 
     pub fn put(&mut self, key: i32, value: i32) {
-        todo!()
+        Default::default()
     }
 }
 

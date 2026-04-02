@@ -1,5 +1,5 @@
 pub fn is_match(s: String, p: String) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

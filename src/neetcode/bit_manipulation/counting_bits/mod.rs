@@ -1,5 +1,5 @@
 pub fn count_bits(n: i32) -> Vec<i32> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

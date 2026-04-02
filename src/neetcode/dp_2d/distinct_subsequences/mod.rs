@@ -1,5 +1,5 @@
 pub fn num_distinct(s: String, t: String) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

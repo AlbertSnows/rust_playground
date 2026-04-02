@@ -1,7 +1,7 @@
 use crate::neetcode::linked_list::{ListNode, to_list, to_vec};
 
 pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

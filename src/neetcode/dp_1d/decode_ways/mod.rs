@@ -1,5 +1,5 @@
 pub fn num_decodings(s: String) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

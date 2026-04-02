@@ -1,5 +1,5 @@
 pub fn is_happy(n: i32) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

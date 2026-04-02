@@ -1,5 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
+#[derive(Default)]
 pub struct Twitter {
     tweets: HashMap<i32, Vec<(i32, i32)>>,
     following: HashMap<i32, HashSet<i32>>,
@@ -8,23 +9,23 @@ pub struct Twitter {
 
 impl Twitter {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn post_tweet(&mut self, user_id: i32, tweet_id: i32) {
-        todo!()
+        Default::default()
     }
 
     pub fn get_news_feed(&self, user_id: i32) -> Vec<i32> {
-        todo!()
+        Default::default()
     }
 
     pub fn follow(&mut self, follower_id: i32, followee_id: i32) {
-        todo!()
+        Default::default()
     }
 
     pub fn unfollow(&mut self, follower_id: i32, followee_id: i32) {
-        todo!()
+        Default::default()
     }
 }
 

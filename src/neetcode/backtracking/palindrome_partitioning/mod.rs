@@ -1,5 +1,5 @@
 pub fn partition(s: String) -> Vec<Vec<String>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

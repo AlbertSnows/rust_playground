@@ -1,3 +1,4 @@
+#[derive(Default)]
 pub struct MinStack {
     stack: Vec<i32>,
     min_stack: Vec<i32>,
@@ -5,23 +6,23 @@ pub struct MinStack {
 
 impl MinStack {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn push(&mut self, val: i32) {
-        todo!()
+        Default::default()
     }
 
     pub fn pop(&mut self) {
-        todo!()
+        Default::default()
     }
 
     pub fn top(&self) -> i32 {
-        todo!()
+        Default::default()
     }
 
     pub fn get_min(&self) -> i32 {
-        todo!()
+        Default::default()
     }
 }
 

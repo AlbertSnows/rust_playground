@@ -1,5 +1,5 @@
 pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

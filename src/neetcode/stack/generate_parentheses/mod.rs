@@ -1,5 +1,5 @@
 pub fn generate_parenthesis(n: i32) -> Vec<String> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

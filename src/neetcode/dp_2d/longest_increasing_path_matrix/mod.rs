@@ -1,5 +1,5 @@
 pub fn longest_increasing_path(matrix: Vec<Vec<i32>>) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

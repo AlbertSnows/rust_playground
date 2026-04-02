@@ -1,5 +1,5 @@
 pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

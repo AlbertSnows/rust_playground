@@ -1,5 +1,5 @@
 pub fn longest_palindrome(s: String) -> String {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

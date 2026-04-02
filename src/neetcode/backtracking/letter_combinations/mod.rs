@@ -1,5 +1,5 @@
 pub fn letter_combinations(digits: String) -> Vec<String> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

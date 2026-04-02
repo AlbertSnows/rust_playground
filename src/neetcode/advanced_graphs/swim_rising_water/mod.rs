@@ -1,5 +1,5 @@
 pub fn swim_in_water(grid: Vec<Vec<i32>>) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

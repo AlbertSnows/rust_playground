@@ -1,5 +1,5 @@
 pub fn word_break(s: String, word_dict: Vec<String>) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

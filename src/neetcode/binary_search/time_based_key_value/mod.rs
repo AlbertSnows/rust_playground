@@ -1,20 +1,21 @@
 use std::collections::HashMap;
 
+#[derive(Default)]
 pub struct TimeMap {
     store: HashMap<String, Vec<(i32, String)>>,
 }
 
 impl TimeMap {
     pub fn new() -> Self {
-        todo!()
+        Default::default()
     }
 
     pub fn set(&mut self, key: String, value: String, timestamp: i32) {
-        todo!()
+        Default::default()
     }
 
     pub fn get(&self, key: String, timestamp: i32) -> String {
-        todo!()
+        Default::default()
     }
 }
 

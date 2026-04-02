@@ -1,5 +1,5 @@
 pub fn reverse_integer(x: i32) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

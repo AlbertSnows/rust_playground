@@ -1,5 +1,5 @@
 pub fn solve(board: &mut Vec<Vec<char>>) {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

@@ -1,5 +1,5 @@
 pub fn check_valid_string(s: String) -> bool {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

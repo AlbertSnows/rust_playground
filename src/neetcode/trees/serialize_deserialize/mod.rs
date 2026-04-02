@@ -3,11 +3,11 @@ use std::cell::RefCell;
 use crate::neetcode::trees::{TreeNode, node, node_with_children};
 
 pub fn serialize(root: Option<Rc<RefCell<TreeNode>>>) -> String {
-    todo!()
+    Default::default()
 }
 
 pub fn deserialize(data: String) -> Option<Rc<RefCell<TreeNode>>> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

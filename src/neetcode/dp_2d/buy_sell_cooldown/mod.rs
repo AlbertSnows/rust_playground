@@ -1,5 +1,5 @@
 pub fn max_profit_cooldown(prices: Vec<i32>) -> i32 {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]

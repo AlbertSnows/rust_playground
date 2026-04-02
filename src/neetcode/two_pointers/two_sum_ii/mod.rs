@@ -1,5 +1,5 @@
 pub fn two_sum_ii(numbers: Vec<i32>, target: i32) -> Vec<i32> {
-    todo!()
+    Default::default()
 }
 
 #[cfg(test)]
