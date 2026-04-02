@@ -12,7 +12,7 @@ pub fn encode(strs: Vec<String>) -> String {
         .iter()
         .map(|s| format!("{}#{}", s.len(), s))
         .collect::<Vec<String>>()
-        .join(",");
+        .join("");
     outcome
 }
 
@@ -24,10 +24,12 @@ pub fn decode(s: String) -> Vec<String> {
     let mut result = vec![];
     while current_number_index < str_len {
         // 4#neet10#oneoneone
-        let j = s[current_number_index..].find('#').unwrap() + current_number_index;
-        let len: usize = s[current_number_index..j].parse().unwrap();
-        result.push(s[j + 1..j + 1 + len].to_string());
-        current_number_index = j + 1 + len;
+        let relative_location_of_hash = s[current_number_index..].find('#').unwrap();
+        let location_of_hash = current_number_index + relative_location_of_hash;
+        let word_len: usize = s[current_number_index..location_of_hash].parse().unwrap();
+        let index_range_for_word = location_of_hash + 1..location_of_hash + 1 + word_len;
+        result.push(s[index_range_for_word].to_string());
+        current_number_index = location_of_hash + 1 + word_len;
     }
     result
 }
@@ -45,7 +47,8 @@ mod tests {
             "you".to_string(),
         ];
         let encoded = encode(input.clone());
-        assert_eq!(decode(encoded), input);
+        let decoded = decode(encoded);
+        assert_eq!(decoded, input);
     }
 
     #[test]
