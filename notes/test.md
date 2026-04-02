@@ -63,3 +63,9 @@ what is an executable in the context of cargo test?
 cargo tests complies code under #[test] into a single binary.
 
 the executable in the json output is compiled binary. cargo puts intermediate build artifacts in there. we skip running the executable so zed can run it with codelldb
+
+more reading:
+- cargo test behavior: cargo test --help or the https://doc.rust-lang.org/cargo/commands/cargo-test.html
+- https://doc.rust-lang.org/book/ch11-02-running-tests.html
+- CodeLLDB: its https://github.com/vadimcn/codelldb has accurate docs
+- Zed debug config: https://zed.dev/docs/debugger
