@@ -1,6 +1,6 @@
 [
   {
-    "label": "Debug Tests",
+    "label": "Debug All Tests",
     "adapter": "CodeLLDB",
     "request": "launch",
     "program": "$ZED_WORKTREE_ROOT/target/debug/deps/rust_playground_test",
@@ -9,6 +9,26 @@
     "build": {
       "command": "sh",
       "args": ["$ZED_WORKTREE_ROOT/.zed/build-test.sh", "$ZED_WORKTREE_ROOT"],
+      "cwd": "$ZED_WORKTREE_ROOT",
+    },
+  },
+  {
+    "label": "Debug Current File Tests",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_WORKTREE_ROOT/target/debug/deps/rust_playground_test",
+    "args": ["--test-threads", "1"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "preRunCommands": [
+      "script filter = open('$ZED_WORKTREE_ROOT/target/debug/.test_filter').read().strip(); lldb.debugger.HandleCommand('settings set target.run-args ' + filter + ' --test-threads 1')",
+    ],
+    "build": {
+      "command": "nu",
+      "args": [
+        "$ZED_WORKTREE_ROOT/.zed/build-test.nu",
+        "$ZED_WORKTREE_ROOT",
+        "$ZED_RELATIVE_DIR",
+      ],
       "cwd": "$ZED_WORKTREE_ROOT",
     },
   },
