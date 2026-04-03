@@ -8,7 +8,7 @@
   {
     "label": "Set Debug Filter (Current File)",
     "command": "nu",
-    "args": ["-c", "('$ZED_RELATIVE_DIR' | path basename) | save -f '$ZED_WORKTREE_ROOT/target/debug/.test_filter'"],
+    "args": ["$ZED_WORKTREE_ROOT/.zed/set-filter.nu", "$ZED_RELATIVE_DIR", "$ZED_WORKTREE_ROOT"],
     "cwd": "$ZED_WORKTREE_ROOT"
   }
 ]
