@@ -1,6 +1,25 @@
 use std::collections::HashSet;
 use std::hash::Hash;
 
+pub trait GetAt<K, T> {
+    // &'a self - the reference to the collection lives for 'a
+    // Option<&'a T> - the return type is a reference to a T that lives for 'a
+    // + 'a on the closure ensures the closure doesn't outlive 'a
+    // T: 'a - the data inside T doesn't outlive 'a
+    fn get_at<'a>(&'a self) -> impl Fn(K) -> Option<&'a T> + 'a
+    where
+        T: 'a;
+}
+
+impl<T> GetAt<usize, T> for Vec<T> {
+    fn get_at<'a>(&'a self) -> impl Fn(usize) -> Option<&'a T> + 'a
+    where
+        T: 'a,
+    {
+        |index| self.get(index)
+    }
+}
+
 pub trait AddIfNotExists<T> {
     fn add_if_not_exists(&mut self, num: T) -> bool;
 }

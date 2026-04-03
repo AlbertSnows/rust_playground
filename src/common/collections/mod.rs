@@ -1,5 +1,22 @@
 pub mod traits;
 
+pub fn transpose<T: Clone>(matrix: &[Vec<T>]) -> Vec<Vec<T>> {
+    // range
+    let range = 0..matrix[0].len();
+    // [[3, 7, 9], [1, 2, 3]]
+    let z = |horizontal_index| {
+        // 1, 2, ...
+        matrix
+            .iter()
+            .map(|horizontal_row| horizontal_row[horizontal_index].clone()) // [3, 7, 9][0] => [1, 2, 3][0]
+            // [3, 7, 9] => 3 | 7 | 9
+            .collect()
+        //
+    };
+    let transposed_matrix = range.map(z).collect();
+    transposed_matrix
+}
+
 pub fn contains<T, F>(pred: F, col: &[T]) -> bool
 where
     F: Fn(&T) -> bool,
@@ -36,22 +53,30 @@ where
     outcome
 }
 
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-//     #[test]
-//     fn returns_first_match() {
-//         assert_eq!(some(|x| x > &&2, vec![1, 2, 3, 4].iter()), Some(&3));
-//     }
+    #[test]
+    fn square() {
+        let matrix = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
+        assert_eq!(
+            transpose(&matrix),
+            vec![vec![1, 4, 7], vec![2, 5, 8], vec![3, 6, 9],]
+        );
+    }
 
-//     #[test]
-//     fn returns_none_when_no_match() {
-//         assert_eq!(some(|x| x > &&10, vec![1, 2, 3].iter()), None);
-//     }
+    #[test]
+    fn single_row() {
+        assert_eq!(transpose(&[vec![3, 7, 9]]), vec![vec![3], vec![7], vec![9]]);
+    }
 
-//     #[test]
-//     fn empty_collection() {
-//         assert_eq!(some(|x: &&i32| **x > 0, vec![].iter()), None);
-//     }
-// }
+    #[test]
+    fn rectangular() {
+        let matrix = vec![vec![1, 2, 3], vec![4, 5, 6]];
+        assert_eq!(
+            transpose(&matrix),
+            vec![vec![1, 4], vec![2, 5], vec![3, 6],]
+        );
+    }
+}
