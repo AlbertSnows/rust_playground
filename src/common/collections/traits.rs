@@ -11,15 +11,6 @@ pub trait GetAt<K, T> {
         T: 'a;
 }
 
-impl<T> GetAt<usize, T> for Vec<T> {
-    fn get_at<'a>(&'a self) -> impl Fn(usize) -> Option<&'a T> + 'a
-    where
-        T: 'a,
-    {
-        |index| self.get(index)
-    }
-}
-
 pub trait AddIfNotExists<T> {
     fn add_if_not_exists(&mut self, num: T) -> bool;
 }

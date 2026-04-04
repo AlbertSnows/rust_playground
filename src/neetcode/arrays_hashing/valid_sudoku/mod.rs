@@ -1,3 +1,8 @@
+use crate::common::{
+    collections::{get_at, transpose},
+    maps::has_dupes,
+};
+
 // Determine if a 9x9 Sudoku board is valid based on the rules: each row, column, and 3x3 box contains digits 1-9 with no repetition.
 
 // ## Example
@@ -22,29 +27,68 @@
 // ,[".","6",".",".",".",".","2","8","."]
 // ,[".",".",".","4","1","9",".",".","5"]
 // ,[".",".",".",".","8",".",".","7","9"]]
+const RELATIVE_LOCATIONS: [(usize, usize); 9] = [
+    (0, 0),
+    (0, 1),
+    (0, 2),
+    (1, 0),
+    (2, 0),
+    (1, 1),
+    (1, 2),
+    (2, 1),
+    (2, 2),
+];
+
+const BOX_STARTING_LOCATIONS: [(usize, usize); 9] = [
+    (0, 0),
+    (0, 3),
+    (0, 6),
+    (3, 0),
+    (3, 3),
+    (3, 6),
+    (6, 0),
+    (6, 3),
+    (6, 6),
+];
 
 pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
-    // let vertical_set = board
-    //     .iter()
-    //     .enumerate()
-    //     .fold(
-    //         Vec::new(),
-    //         |mut ?, (vertical_index, horizontal_row)| {
-    //             // (0, [5, 3, .])
-    //             let vertical_row = horizontal_row.iter().enumerate().fold(
-    //                 Vec::new(),
-    //                 |mut vertical_row, (horizontal_index, value)| {
-    //                     // (1, 3)
-    //                     //
-    //                     vertical_row.push(board[horizontal_index][vertical_index]);
-    //                     vertical_row
-    //                 },
-    //             ); // [5,6,.]
-    //             ?.push(new_row);
-    //             ?
-    //         },
-    //     );
-    Default::default()
+    let only_nums = |row: &Vec<char>| {
+        row.iter()
+            .filter(|c| c.is_ascii_digit())
+            .copied()
+            .collect::<Vec<char>>()
+    };
+    let is_valid_row = |row: &Vec<char>| !has_dupes(only_nums(row).into_iter());
+    // verify horizontal = easy, look row by row
+    let horizontal_valid = board.iter().all(is_valid_row);
+
+    // verify vertical = transpose, look row by row
+    let transposed = transpose(&board);
+    let vertical_valid = transposed.iter().all(|row| is_valid_row(row));
+
+    // verify boxes = [(0, 0), (0, 1), (0, 2), (1, 0), (2, 0), (1, 1), (1, 2), (2, 1), (2, 2)]
+    let define_box_from_starting_location = |&(row, col)| {
+        RELATIVE_LOCATIONS
+            .iter()
+            .map(|(r, c)| (row + r, col + c))
+            .collect::<Vec<(usize, usize)>>()
+    };
+    let box_indexes: Vec<Vec<(usize, usize)>> = BOX_STARTING_LOCATIONS
+        .iter()
+        .map(define_box_from_starting_location)
+        .collect();
+    let boxes_as_rows: Vec<Vec<char>> = box_indexes
+        .iter()
+        .map(|index_row| {
+            index_row
+                .iter()
+                .map(|(row, col)| board[*row][*col])
+                .collect()
+        })
+        .collect();
+    let boxes_valid = boxes_as_rows.iter().all(is_valid_row);
+    println!("{:?}", boxes_as_rows);
+    horizontal_valid && vertical_valid && boxes_valid
 }
 
 #[cfg(test)]

@@ -3,6 +3,10 @@ use std::collections::HashMap;
 use std::hash::Hash;
 use std::vec::IntoIter;
 
+pub fn has_dupes<T: Eq + Hash>(iter: impl Iterator<Item = T>) -> bool {
+    iter.duplicates().next().is_some()
+}
+
 pub fn hash_freq_map<T: Eq + Hash + ToString + Clone + Ord>(map: &HashMap<T, usize>) -> String {
     //Keys<'_, K, V> -> '_ = lifetime
     // '_ means "this iterator cannot outlive the map it came from

@@ -1,19 +1,25 @@
 pub mod traits;
 
+/*
+ * given get_at(3)([a, b, c]) yields c
+ * can be used to get the same element from multiple rows
+ * useful for columnular indexing
+ */
+pub fn get_at<T: Clone>(index: usize) -> impl Fn(&Vec<T>) -> T {
+    move |coll: &Vec<T>| coll[index].clone()
+}
+
+/* assume matrix = [[a, b, c], [d, e, f], [g, h, i]]
+ * given get_column(1)(matrix) yields [b, e, h]
+ */
+pub fn get_column<T: Clone>(row_index: usize) -> impl Fn(&[Vec<T>]) -> Vec<T> {
+    move |matrix: &[Vec<T>]| matrix.iter().map(get_at(row_index)).collect()
+}
+
 pub fn transpose<T: Clone>(matrix: &[Vec<T>]) -> Vec<Vec<T>> {
-    // range
-    let range = 0..matrix[0].len();
-    // [[3, 7, 9], [1, 2, 3]]
-    let z = |horizontal_index| {
-        // 1, 2, ...
-        matrix
-            .iter()
-            .map(|horizontal_row| horizontal_row[horizontal_index].clone()) // [3, 7, 9][0] => [1, 2, 3][0]
-            // [3, 7, 9] => 3 | 7 | 9
-            .collect()
-        //
-    };
-    let transposed_matrix = range.map(z).collect();
+    let dimension = 0..matrix[0].len();
+    let get_matrix_column = |vert_index| get_column(vert_index)(matrix);
+    let transposed_matrix = dimension.map(get_matrix_column).collect();
     transposed_matrix
 }
 
@@ -78,5 +84,25 @@ mod tests {
             transpose(&matrix),
             vec![vec![1, 4], vec![2, 5], vec![3, 6],]
         );
+    }
+
+    #[test]
+    fn contains_found() {
+        assert!(contains(|x| *x > 3, &[1, 2, 3, 4]));
+    }
+
+    #[test]
+    fn contains_not_found() {
+        assert!(!contains(|x| *x > 10, &[1, 2, 3]));
+    }
+
+    #[test]
+    fn when_match() {
+        assert_eq!(when(|x| *x > &2, [1, 2, 3, 4].iter(), |x| x * 2), Some(6));
+    }
+
+    #[test]
+    fn when_no_match() {
+        assert_eq!(when(|x| *x > &10, [1, 2, 3].iter(), |x| x * 2), None);
     }
 }
