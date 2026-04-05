@@ -64,7 +64,7 @@ pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
 
     // verify vertical = transpose, look row by row
     let transposed = transpose(&board);
-    let vertical_valid = transposed.iter().all(|row| is_valid_row(row));
+    let vertical_valid = transposed.iter().all(is_valid_row);
 
     // verify boxes = [(0, 0), (0, 1), (0, 2), (1, 0), (2, 0), (1, 1), (1, 2), (2, 1), (2, 2)]
     let define_box_from_starting_location = |&(row, col)| {
@@ -87,6 +87,7 @@ pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         })
         .collect();
     let boxes_valid = boxes_as_rows.iter().all(is_valid_row);
+
     println!("{:?}", boxes_as_rows);
     horizontal_valid && vertical_valid && boxes_valid
 }

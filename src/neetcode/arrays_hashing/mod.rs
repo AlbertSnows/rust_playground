@@ -1,10 +1,9 @@
 pub mod anagram;
 pub mod dups;
-pub mod palindrome;
-pub mod two_sum;
-pub mod group_anagrams;
-pub mod top_k_frequent;
-pub mod product_except_self;
-pub mod valid_sudoku;
 pub mod encode_decode;
+pub mod group_anagrams;
 pub mod longest_consecutive;
+pub mod product_except_self;
+pub mod top_k_frequent;
+pub mod two_sum;
+pub mod valid_sudoku;
