@@ -1,6 +1,7 @@
 use itertools::Itertools;
 use std::collections::HashMap;
 use std::hash::Hash;
+use std::iter::repeat;
 use std::vec::IntoIter;
 
 pub fn has_dupes<T: Eq + Hash>(iter: impl Iterator<Item = T>) -> bool {
@@ -29,6 +30,16 @@ pub fn freq_map<T: Eq + Hash>(iter: impl Iterator<Item = T>) -> HashMap<T, usize
         *resulting_map.entry(item).or_insert(0) += 1;
     }
     resulting_map
+}
+
+pub fn unroll_freq_map<T: Eq + Hash + ToString + Clone + Ord>(
+    freq_mapping: &HashMap<&T, usize>,
+) -> Vec<T> {
+    let result = freq_mapping
+        .iter()
+        .flat_map(|(&elem, &freq)| repeat(elem.clone()).take(freq))
+        .collect::<Vec<_>>();
+    result
 }
 
 #[cfg(test)]

@@ -1,5 +1,8 @@
 // use crate::common::collections::collections::some;
 #![allow(dead_code)]
+pub mod mod_multiple_solution_sorted;
+mod mod_v1;
+
 use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
 
